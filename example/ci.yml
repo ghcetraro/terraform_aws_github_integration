@@ -1,0 +1,38 @@
+---
+name: Build and Push
+
+on:
+  push:
+    branches:
+      - 'main'
+
+permissions:
+  id-token: write  
+  contents: read    
+
+jobs:
+  release-chart:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout the code
+        uses: actions/checkout@v4
+
+      - name: configure-aws-credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::1234567890:role/github-runner-role-ecr
+          role-session-name: deafult
+          role-duration-seconds: 3600
+          aws-region: us-east-1
+
+      - name: Login to Amazon AWS_ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and Push
+        shell: bash
+        run: |
+              #
+              DOCKER_IMAGE="1234567890.dkr.ecr.us-east-1.amazonaws.com/pepe:latest"
+              docker build -t $DOCKER_IMAGE .
+              docker push $DOCKER_IMAGE
