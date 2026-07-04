@@ -13,3 +13,25 @@ This can be used in github actions to connect to aws and perform different types
 ## github action
 
   Theres an example of how to use to build images  
+
+---
+
+## Documentación del proyecto
+
+- [Changelog](CHANGELOG.md)
+- [Contribuir](CONTRIBUTING.md)
+
+---
+
+## Seguridad
+
+No commitees secretos, tfvars con credenciales reales ni archivos de state.
+
+Ver [SECURITY.md](SECURITY.md).
+
+---
+
+## Licencia
+
+[MIT](LICENSE) — Copyright (c) Gabriel Cetraro
+
